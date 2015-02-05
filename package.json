@@ -36,6 +36,7 @@
         "event-dom": "itsa/event-dom",
         "js-ext": "itsa/js-ext",
         "css": "itsa/css",
+        "i-formelement": "itags/i-formelement",
         "itags.core": "itags/core"
     },
     "devDependencies": {
