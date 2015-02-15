@@ -103,8 +103,8 @@ module.exports = function (window) {
             for (i=0; i<len; i++) {
                 element = registeredElements[i];
                 if (!element.hasData('_suppressTap')) {
-                    // element._fitCheckbox();
-                    // element._setUIState();
+                    element._fitCheckbox();
+                    element._setUIState();
                 }
             }
         }, INTERVAL_FONTCHANGE_CHECK, true);
@@ -117,15 +117,15 @@ module.exports = function (window) {
 
             init: function() {
                 var element = this,
-                    value = element.model.checked || false,
+                    value = element.model.checked,
                     designNode = element.getDesignNode(),
                     options = designNode.getAll('>option'),
                     content, innerDiv, borderLeftWidth;
-                element.defineWhenUndefined('checked', value);
+
                 // set the reset-value to the inital-value in case `reset-value` was not present
-                element.defineWhenUndefined('reset-value', value);
-                element.defineWhenUndefined('onText', options[0] ? options[0].getHTML() : DEFAULT_ON_TEXT);
-                element.defineWhenUndefined('offText', options[1] ? options[1].getHTML() : DEFAULT_OFF_TEXT);
+                element.defineWhenUndefined('reset-value', value)
+                       .defineWhenUndefined('onText', options[0] ? options[0].getHTML() : DEFAULT_ON_TEXT)
+                       .defineWhenUndefined('offText', options[1] ? options[1].getHTML() : DEFAULT_OFF_TEXT);
 
                 content = '<div tabindex="0">'+
                               '<div class="i-constrain">'+
@@ -205,6 +205,10 @@ module.exports = function (window) {
                 element._setUIState(model.checked);
                 itemContainers[0].setHTML(model.onText);
                 itemContainers[1].setHTML(model.offText);
+            },
+
+            currentToReset: function() {
+                model['reset-value'] = model.checked;
             },
 
             reset: function() {
