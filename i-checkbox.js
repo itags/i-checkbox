@@ -119,13 +119,19 @@ module.exports = function (window) {
                 var element = this,
                     value = element.model.checked,
                     designNode = element.getDesignNode(),
-                    options = designNode.getAll('>option'),
-                    content, innerDiv, borderLeftWidth;
+                    options = designNode.getAll('>option');
 
                 // set the reset-value to the inital-value in case `reset-value` was not present
                 element.defineWhenUndefined('reset-value', value)
                        .defineWhenUndefined('onText', options[0] ? options[0].getHTML() : DEFAULT_ON_TEXT)
                        .defineWhenUndefined('offText', options[1] ? options[1].getHTML() : DEFAULT_OFF_TEXT);
+
+                registeredElements.push(element);
+            },
+
+            render: function() {
+                var element = this,
+                    content, innerDiv, borderLeftWidth;
 
                 content = '<div tabindex="0">'+
                               '<div class="i-constrain">'+
@@ -142,7 +148,6 @@ module.exports = function (window) {
                 element.setData('_leftBorder', borderLeftWidth);
                 element.setData('_vertBorders', parseInt(innerDiv.getStyle('border-top-width'), 10) + parseInt(innerDiv.getStyle('border-bottom-width'), 10));
                 element.setData('_horBorders', borderLeftWidth + parseInt(innerDiv.getStyle('border-right-width'), 10));
-                registeredElements.push(element);
             },
 
             _fitCheckbox: function() {
