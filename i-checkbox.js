@@ -123,9 +123,8 @@ module.exports = function (window) {
 
                 // set the reset-value to the inital-value in case `reset-value` was not present
                 element.defineWhenUndefined('reset-value', value)
-                       .defineWhenUndefined('onText', options[0] ? options[0].getHTML() : DEFAULT_ON_TEXT)
-                       .defineWhenUndefined('offText', options[1] ? options[1].getHTML() : DEFAULT_OFF_TEXT);
-
+                       .defineWhenUndefined('on-text', options[0] ? options[0].getHTML() : DEFAULT_ON_TEXT)
+                       .defineWhenUndefined('off-text', options[1] ? options[1].getHTML() : DEFAULT_OFF_TEXT);
                 registeredElements.push(element);
             },
 
@@ -208,11 +207,12 @@ module.exports = function (window) {
                     model = element.model;
                 element._fitCheckbox();
                 element._setUIState(model.checked);
-                itemContainers[0].setHTML(model.onText);
-                itemContainers[1].setHTML(model.offText);
+                itemContainers[0].setHTML(model['on-text']);
+                itemContainers[1].setHTML(model['off-text']);
             },
 
             currentToReset: function() {
+                var model = this.model;
                 model['reset-value'] = model.checked;
             },
 
