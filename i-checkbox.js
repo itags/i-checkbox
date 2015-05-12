@@ -146,7 +146,7 @@ module.exports = function (window) {
 
                 content = '<span tabindex="0">'+
                               '<span class="i-constrain">'+
-                                  '<span class="i-container" dd-draggable="true" dd-handle=".i-btn" constrain-selector=".i-constrain">'+
+                                  '<span class="i-container" plugin-dd="true" dd-direction="x" dd-handle=".i-btn" plugin-constrain="true" constrain-selector=".i-constrain">'+
                                       '<span class="i-on">I</span>'+
                                       '<span class="i-off">O</span>'+
                                       '<span class="i-btn"></span>'+
