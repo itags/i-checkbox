@@ -223,19 +223,7 @@ module.exports = function (window) {
                 itemContainers[1].setHTML(model['off-text']);
             },
 
-            getValue: function() {
-                return this.model.checked;
-            },
-
-            currentToReset: function() {
-                var model = this.model;
-                model['reset-value'] = model.checked;
-            },
-
-            reset: function() {
-                var model = this.model;
-                model.checked = model['reset-value'];
-            },
+            valueProperty: 'checked',
 
             destroy: function() {
                 unRegisterElement(this);
