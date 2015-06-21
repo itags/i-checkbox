@@ -1,0 +1,152 @@
+/* ======================================================================= */
+/* ======================================================================= */
+/* ======================================================================= */
+/* Definition of itag shadow-css is done by defining a `dummy` css-rule    */
+/* for the dummy-element: `itag-css` --> its property (also dummy) `i-tag` */
+/* will define which itag will be css-shadowed                             */
+/* ======================================================================= */
+itag-css {
+    i-tag: i-checkbox;  /* set the property-value to the proper itag */
+}
+/* ======================================================================= */
+/* ======================================================================= */
+/* ======================================================================= */
+
+
+/* ================================= */
+/* set invisiblity when not rendered */
+/* ================================= */
+i-checkbox:not(.itag-rendered) {
+    /* don't set visibility to hidden --> you cannot set a focus on those items */
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    z-index: -1;
+}
+
+i-checkbox:not(.itag-rendered) * {
+    opacity: 0 !important;
+}
+/* ================================= */
+i-checkbox {
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 4.5em;
+    height: 1.9em;
+}
+
+i-checkbox span {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+i-checkbox >span,
+i-checkbox >span >span,
+i-checkbox >span >span >span,
+i-checkbox >span >span >span >span {
+    display: block;
+}
+
+/* the first span is the focussable span */
+i-checkbox >span {
+    z-index: 1;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    width: 100%;
+    height: 100%;
+}
+
+i-checkbox >span:focus .i-on,
+i-checkbox >span:focus .i-off {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000',GradientType=0);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0,0,0, 0.05)), to(rgba(0,0,0, 0.10)));
+    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    background-image: -moz-linear-gradient(top, rgba(0,0,0, 0.05) 0%, rgba(0,0,0, 0.10));
+    background-image: -o-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    background-image: linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    box-shadow: 0 0 0 1px rgba(0,0,0, 0.3) inset;
+}
+
+i-checkbox >span:focus .i-btn {
+    border: solid 1px #888;
+    box-shadow: inset 0 0.17em 0.5em rgba(0, 0, 0, 0.06);
+}
+
+i-checkbox >span:focus .i-btn.dd-dragging {
+    cursor: default;
+}
+
+i-checkbox .i-constrain {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 0; /* left will be calculated by i-checkbox */
+}
+
+i-checkbox .i-container {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    left: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: left 0.25s;
+    -moz-transition: left 0.25s;
+    -ms-transition: left 0.25s;
+    -o-transition: left 0.25s;
+    transition: left 0.25s;
+}
+
+i-checkbox .i-on {
+    height: 100%;
+    background-color: #0078E7;
+    color: #FFF;
+    position: static;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 2px;
+    float: left;
+    box-shadow: inset 0 0.3em 0.5em rgba(0, 0, 0, 0.18);
+}
+
+i-checkbox .i-off {
+    height: 100%;
+    background-color: #FFF;
+    color: #444;
+    position: static;
+    text-align: center;
+    padding-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    box-shadow: inset 0 0.3em 0.5em rgba(0, 0, 0, 0.18);
+}
+
+i-checkbox .i-btn {
+    position: relative;
+    z-index: 1;
+    border-radius: 100%;
+    float: left;
+    box-shadow: inset 0 0.17em 0.5em rgba(0, 0, 0, 0.18);
+    background-color: #fff;
+    border: solid 1px #AAA;
+}
